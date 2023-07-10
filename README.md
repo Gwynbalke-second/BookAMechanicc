@@ -9,8 +9,11 @@ Należy zaimportować gotowy plik "baza.bacpac" do programu SQL Server, a także
 
 
 customer - username:customer@nobody    poassword:customer123
+
 mechanic - username:mechanic@nobody    password:mechanic123 
+
 admin - username:admin     password:admin
+
 
 
 
