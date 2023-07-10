@@ -4,7 +4,7 @@
 Aplikacja pozwala na rezerwowanie usług przez klientów względem mechaników jak i akceptowanie zleceń mechnaikom (jest też panel administracyjny).
 Niestety ze względu na problemy z połączeniem się do bazy AWSowej wymagane jest połączenie się z bazą lokalną.
 
-Należy zaimportować gotowy plik "baza.bacpac" do programu SQL Server, a także podmienić „connectionString” w pliku "appsettings.json"na lokalnie utworzony server.
+Należy zaimportować gotowy plik "baza_backup" do programu SQL Server, a także podmienić „connectionString” w pliku "appsettings.json"na lokalnie utworzony server.
 
 
 
