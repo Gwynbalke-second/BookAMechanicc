@@ -1,0 +1,730 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Http
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    HttpContext httpContext = Context.Request.HttpContext;
+    bool isAdmin = httpContext.Session.GetString("isAdmin") == "True";
+    bool isCust = httpContext.Session.GetString("isCust") == "True";
+    bool isMech = httpContext.Session.GetString("isMech") == "True";
+}
+
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <base href="../../">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="page-discription">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="./images/favicon.png">
+    <!-- Page Title  -->
+    <title>BookAMechaninc Limited</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="./assets/css/dashlite.css?ver=1.4.0">
+    <link id="skin-default" rel="stylesheet" href="./assets/css/theme.css?ver=1.4.0">
+</head>
+
+<body class="nk-body npc-subscription has-aside ui-clean ">
+    <div class="nk-app-root">
+        <!-- main s -->
+        <div class="nk-main ">
+            <!-- wrap s -->
+            <div class="nk-wrap ">
+                <div class="nk-header nk-header-fixed is-light">
+                    <div class="container-lg wide-xl">
+                        <div class="nk-header-wrap">
+                            <div class="nk-header-brand">
+
+                            </div><!-- .nk-header-brand -->
+                            <div class="nk-header-tools">
+                                <ul class="nk-quick-nav">
+                                    @{
+                                        if (isAdmin)
+                                        {
+
+                                            var admin = httpContext.Session.GetString("User");
+                                            <li class="dropdown user-dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <div class="user-toggle">
+                                                        <div class="user-avatar sm">
+                                                            <em class="icon ni ni-user-alt"></em>
+                                                        </div>
+                                                        <div class="user-info d-none d-md-block">
+                                                            <div class="user-status">Administrator</div>
+                                                            <div class="user-name dropdown-indicator">@admin</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-md dropdown-menu-right dropdown-menu-s1">
+                                                    <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                                        <div class="user-card">
+                                                            <div class="user-avatar">
+                                                                <span>AD</span>
+                                                            </div>
+                                                            <div class="user-info">
+                                                                <span class="lead-text">Admin</span>
+                                                                <span class="sub-text">@admin</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--<div class="dropdown-inner">
+                                                    <ul class="link-list">
+                                                        <li><a href="#"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                                        <li><a href="#"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>-->
+                                                    @*<li><a href="html/general/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>*@
+                                                    <!--</ul>
+                                                    </div>-->
+                                                    <div class="dropdown-inner">
+                                                        <ul class="link-list">
+                                                            <li><a href="Login/Logout"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                @*</li> .dropdown
+                                        <li class="dropdown notification-dropdown mr-n1">
+                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
+                                        <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1">
+                                        <div class="dropdown-head">
+                                        <span class="sub-title nk-dropdown-title">Notifications</span>
+                                        <a href="#">Mark All as Read</a>
+                                        </div>
+                                        <div class="dropdown-body">
+                                        <div class="nk-notification">
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        </div> .nk-notification
+                                        </div> .nk-dropdown-body
+                                        <div class="dropdown-foot center">
+                                        <a href="#">View All</a>
+                                        </div>
+                                        </div>*@
+                                            </li>
+                                        }
+                                        else if (isCust)
+                                        {
+                                            //var customer = Session["User"] as BookAMechanicc.Models.tbl_customer;
+                                            var customer = httpContext.Session.GetString("User");
+                                            var first = httpContext.Session.GetString("first");
+                                            var last = httpContext.Session.GetString("last");
+                                            <li class="dropdown user-dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <div class="user-toggle">
+                                                        <div class="user-avatar sm">
+                                                            <em class="icon ni ni-user-alt"></em>
+                                                        </div>
+                                                        <div class="user-info d-none d-md-block">
+                                                            <div class="user-status">Customer</div>
+                                                            <div class="user-name dropdown-indicator">@first @last</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-md dropdown-menu-right dropdown-menu-s1">
+                                                    <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                                        <div class="user-card">
+                                                            <div class="user-avatar">
+                                                                <span>@first.Substring(0, 1)@last.Substring(0, 1)</span>
+                                                            </div>
+                                                            <div class="user-info">
+                                                                <span class="lead-text">@first @last</span>
+                                                                <span class="sub-text">@customer</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--<div class="dropdown-inner">
+                                                    <ul class="link-list">
+                                                        <li><a href="#"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                                        <li><a href="#"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>-->
+                                                    @*<li><a href="html/general/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>*@
+                                                    <!--</ul>
+                                                    </div>-->
+                                                    <div class="dropdown-inner">
+                                                        <ul class="link-list">
+                                                            <li><a href="Login/Logout"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                @*</li> .dropdown
+                                        <li class="dropdown notification-dropdown mr-n1">
+                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
+                                        <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1">
+                                        <div class="dropdown-head">
+                                        <span class="sub-title nk-dropdown-title">Notifications</span>
+                                        <a href="#">Mark All as Read</a>
+                                        </div>
+                                        <div class="dropdown-body">
+                                        <div class="nk-notification">
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        </div> .nk-notification
+                                        </div> .nk-dropdown-body
+                                        <div class="dropdown-foot center">
+                                        <a href="#">View All</a>
+                                        </div>
+                                        </div>*@
+                                            </li>
+                                        }
+                                        else if (isMech)
+                                        {
+
+                                            var customer = httpContext.Session.GetString("User");
+                                            var first = httpContext.Session.GetString("first");
+                                            var last = httpContext.Session.GetString("last");
+                                            <li class="dropdown user-dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <div class="user-toggle">
+                                                        <div class="user-avatar sm">
+                                                            <em class="icon ni ni-user-alt"></em>
+                                                        </div>
+                                                        <div class="user-info d-none d-md-block">
+                                                            <div class="user-status">Mechanic</div>
+                                                            <div class="user-name dropdown-indicator">@first @last</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-md dropdown-menu-right dropdown-menu-s1">
+                                                    <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                                        <div class="user-card">
+                                                            <div class="user-avatar">
+                                                                <span>@first.Substring(0, 1)@last.Substring(0, 1)</span>
+                                                            </div>
+                                                            <div class="user-info">
+                                                                <span class="lead-text">@first @last</span>
+                                                                <span class="sub-text">@customer</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--<div class="dropdown-inner">
+                                                    <ul class="link-list">
+                                                        <li><a href="#"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                                        <li><a href="#"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>-->
+                                                    @*<li><a href="html/general/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>*@
+                                                    <!--</ul>
+                                                    </div>-->
+                                                    <div class="dropdown-inner">
+                                                        <ul class="link-list">
+                                                            <li><a href="Login/Logout"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                @*</li> .dropdown
+                                        <li class="dropdown notification-dropdown mr-n1">
+                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
+                                        <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1">
+                                        <div class="dropdown-head">
+                                        <span class="sub-title nk-dropdown-title">Notifications</span>
+                                        <a href="#">Mark All as Read</a>
+                                        </div>
+                                        <div class="dropdown-body">
+                                        <div class="nk-notification">
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        <div class="nk-notification-item dropdown-inner">
+                                        <div class="nk-notification-icon">
+                                        <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                        </div>
+                                        <div class="nk-notification-content">
+                                        <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
+                                        <div class="nk-notification-time">2 hrs ago</div>
+                                        </div>
+                                        </div>
+                                        </div> .nk-notification
+                                        </div> .nk-dropdown-body
+                                        <div class="dropdown-foot center">
+                                        <a href="#">View All</a>
+                                        </div>
+                                        </div>*@
+                                            </li>
+                                        }
+                                    }<!-- .dropdown -->
+                                    <li class="dropdown notification-dropdown">
+                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon mr-lg-n1" data-toggle="dropdown">
+                                            <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1">
+
+                                            <div class="dropdown-body">
+                                                <div class="nk-notification">
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- .nk-notification -->
+                                            </div><!-- .nk-dropdown-body -->
+
+                                        </div>
+                                    </li><!-- .dropdown -->
+                                    <li class="d-lg-none">
+                                        <a href="#" class="toggle nk-quick-nav-icon mr-n1" data-target="sideNav"><em class="icon ni ni-menu"></em></a>
+                                    </li>
+                                </ul><!-- .nk-quick-nav -->
+                            </div><!-- .nk-header-tools -->
+                        </div><!-- .nk-header-wrap -->
+                    </div><!-- .container-fliud -->
+                </div>
+                <!-- main header e -->
+                <!-- content s -->
+                <div class="nk-content ">
+                    <div class="container wide-xl">
+                        <div class="nk-content-inner">
+                            <div class="nk-aside" data-content="sideNav" data-toggle-overlay="true" data-toggle-screen="lg" data-toggle-body="true">
+                                <div class="nk-sidebar-menu" data-simplebar>
+                                    <!-- Menu -->
+                                    <ul class="nk-menu">
+                                        @{
+                                            if (isAdmin)
+                                            {
+                                                <li class="nk-menu-heading">
+                                                    <h6 class="overline-title">Menu</h6>
+                                                </li>
+                                                <li class="nk-menu-item">
+                                                    <a href="Home/Index" class="nk-menu-link">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
+                                                        <span class="nk-menu-text">Dashboard</span>
+                                                    </a>
+                                                </li>
+                                                @*<li class="nk-menu-item">
+                                        <a href="html/subscription/subscriptions.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-file-text"></em></span>
+                                        <span class="nk-menu-text">My Subscription</span>
+                                        </a>
+                                        </li>*@
+                                                <li class="nk-menu-item">
+                                                    <a href="Admin/AllOrders" class="nk-menu-link">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-report-profit"></em></span>
+                                                        <span class="nk-menu-text">Order History</span>
+                                                    </a>
+                                                </li>
+                                                @*<li class="nk-menu-item">
+                                        <a href="html/subscription/downloads.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-download-cloud"></em></span>
+                                        <span class="nk-menu-text">Download</span>
+                                        </a>
+                                        </li>*@
+                                                <li class="nk-menu-item">
+                                                    <a href="Admin/ManageCustomer" class="nk-menu-link">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
+                                                        <span class="nk-menu-text">Manage Customers</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nk-menu-item">
+                                                    <a href="Admin/ManageMechanic" class="nk-menu-link">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
+                                                        <span class="nk-menu-text">Manage Mechanics</span>
+                                                    </a>
+                                                </li>
+                                                @*<li class="nk-menu-heading">
+                                        <h6 class="overline-title">See Others</h6>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                        <a href="#" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-files"></em></span>
+                                        <span class="nk-menu-text">Pre-Built Pages</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item"><a href="html/subscription/pricing.html" class="nk-menu-link"><span class="nk-menu-text">Pricing</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/team-access.html" class="nk-menu-link"><span class="nk-menu-text">Team Access</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/profile-activity.html" class="nk-menu-link"><span class="nk-menu-text">Login Activity</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/invoices.html" class="nk-menu-link"><span class="nk-menu-text">Invoices <span class="count">(2)</span></span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/invoice-details.html" class="nk-menu-link"><span class="nk-menu-text">View Invoice</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/tickets.html" class="nk-menu-link"><span class="nk-menu-text">Tickets <span class="count">(5)</span></span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/ticket-details.html" class="nk-menu-link"><span class="nk-menu-text">Ticket Details</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/support.html" class="nk-menu-link"><span class="nk-menu-text">Support</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/subscriptions-detail.html" class="nk-menu-link"><span class="nk-menu-text">Subscription Details</span></a></li>
+                                        </ul>
+                                        </li>*@
+                                            }
+                                            else if (isCust)
+                                            {
+                                                <li class="nk-menu-heading">
+                                                    <h6 class="overline-title">Menu</h6>
+                                                </li>
+                                                <li class="nk-menu-item">
+                                                    <a href="Home/CustomerIndex" class="nk-menu-link">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
+                                                        <span class="nk-menu-text">Dashboard</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nk-menu-item">
+                                                    <a href="Customer/BookAMechanic" class="nk-menu-link">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-file-text"></em></span>
+                                                        <span class="nk-menu-text">Book A Mechanic</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nk-menu-item">
+                                                    <a href="Customer/OrderHistory" class="nk-menu-link">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-report-profit"></em></span>
+                                                        <span class="nk-menu-text">Order History</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nk-menu-item">
+                                                    <a href="Customer/CurrentOrder" class="nk-menu-link">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-download-cloud"></em></span>
+                                                        <span class="nk-menu-text">My Current Orders</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nk-menu-item">
+                                                    <a href="Customer/ManageCustomer" class="nk-menu-link">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
+                                                        <span class="nk-menu-text">Account Setting</span>
+                                                    </a>
+                                                </li>
+                                                @*<li class="nk-menu-heading">
+                                        <h6 class="overline-title">See Others</h6>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                        <a href="#" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-files"></em></span>
+                                        <span class="nk-menu-text">Pre-Built Pages</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item"><a href="html/subscription/pricing.html" class="nk-menu-link"><span class="nk-menu-text">Pricing</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/team-access.html" class="nk-menu-link"><span class="nk-menu-text">Team Access</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/profile-activity.html" class="nk-menu-link"><span class="nk-menu-text">Login Activity</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/invoices.html" class="nk-menu-link"><span class="nk-menu-text">Invoices <span class="count">(2)</span></span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/invoice-details.html" class="nk-menu-link"><span class="nk-menu-text">View Invoice</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/tickets.html" class="nk-menu-link"><span class="nk-menu-text">Tickets <span class="count">(5)</span></span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/ticket-details.html" class="nk-menu-link"><span class="nk-menu-text">Ticket Details</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/support.html" class="nk-menu-link"><span class="nk-menu-text">Support</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/subscriptions-detail.html" class="nk-menu-link"><span class="nk-menu-text">Subscription Details</span></a></li>
+                                        </ul>
+                                        </li>*@
+                                            }
+                                            else if (isMech)
+                                            {
+                                                <li class="nk-menu-heading">
+                                                    <h6 class="overline-title">Menu</h6>
+                                                </li>
+                                                <li class="nk-menu-item">
+                                                    <a href="Home/MechanicIndex" class="nk-menu-link">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
+                                                        <span class="nk-menu-text">Dashboard</span>
+                                                    </a>
+                                                </li>
+                                                @*<li class="nk-menu-item">
+                                        <a href="html/subscription/subscriptions.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-file-text"></em></span>
+                                        <span class="nk-menu-text">My Subscription</span>
+                                        </a>
+                                        </li>*@
+                                                <li class="nk-menu-item">
+                                                    <a href="Mechanic/CurrentOrder" class="nk-menu-link">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-download-cloud"></em></span>
+                                                        <span class="nk-menu-text">My Current Orders</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nk-menu-item">
+                                                    <a href="Mechanic/OrderHistory" class="nk-menu-link">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-report-profit"></em></span>
+                                                        <span class="nk-menu-text">Order History</span>
+                                                    </a>
+                                                </li>
+                                                @*<li class="nk-menu-item">
+                                        <a href="html/subscription/downloads.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-download-cloud"></em></span>
+                                        <span class="nk-menu-text">Download</span>
+                                        </a>
+                                        </li>*@
+                                                <li class="nk-menu-item">
+                                                    <a href="Mechanic/ManageMechanic" class="nk-menu-link">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
+                                                        <span class="nk-menu-text">Account Setting</span>
+                                                    </a>
+                                                </li>
+                                                @*<li class="nk-menu-heading">
+                                        <h6 class="overline-title">See Others</h6>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                        <a href="#" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-files"></em></span>
+                                        <span class="nk-menu-text">Pre-Built Pages</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item"><a href="html/subscription/pricing.html" class="nk-menu-link"><span class="nk-menu-text">Pricing</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/team-access.html" class="nk-menu-link"><span class="nk-menu-text">Team Access</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/profile-activity.html" class="nk-menu-link"><span class="nk-menu-text">Login Activity</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/invoices.html" class="nk-menu-link"><span class="nk-menu-text">Invoices <span class="count">(2)</span></span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/invoice-details.html" class="nk-menu-link"><span class="nk-menu-text">View Invoice</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/tickets.html" class="nk-menu-link"><span class="nk-menu-text">Tickets <span class="count">(5)</span></span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/ticket-details.html" class="nk-menu-link"><span class="nk-menu-text">Ticket Details</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/support.html" class="nk-menu-link"><span class="nk-menu-text">Support</span></a></li>
+                                        <li class="nk-menu-item"><a href="html/subscription/subscriptions-detail.html" class="nk-menu-link"><span class="nk-menu-text">Subscription Details</span></a></li>
+                                        </ul>
+                                        </li>*@
+                                            }
+
+                                        }
+                                    </ul>
+                                    <!-- Menu -->
+                                    <ul class="nk-menu nk-menu-sm">
+                                        <!-- Menu -->
+                                        <li class="nk-menu-heading">
+                                            <span>Help Center</span>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="html/subscription/faqs.html" class="nk-menu-link">
+                                                <span class="nk-menu-text">FAQs</span>
+                                            </a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="html/subscription/contact.html" class="nk-menu-link">
+                                                <span class="nk-menu-text">Contact</span>
+                                            </a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="html/subscription/support.html" class="nk-menu-link">
+                                                <span class="nk-menu-text">Support</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div><!-- .nk-sidebar-menu -->
+                                <div class="nk-aside-close">
+                                    <a href="#" class="toggle" data-target="sideNav"><em class="icon ni ni-cross"></em></a>
+                                </div><!-- .nk-aside-close -->
+                            </div><!-- .nk-aside -->
+                            <div class="nk-content-body">
+                                @RenderBody()
+                            </div>
+                            <!-- footer s -->
+                            <div class="nk-footer" style="position: absolute !important; bottom: -50px; left: 100px !important;">
+                                <div class="container wide-xl">
+                                    <div class="nk-footer-wrap g-2">
+                                        <div class="nk-footer-copyright">
+                                            &copy; @DateTime.Now.Year BookAMechanic Limited
+                                        </div>
+                                        <div class="nk-footer-links">
+                                            <ul class="nav nav-sm">
+                                                <li class="nav-item"><a class="nav-link" href="#">Terms</a></li>
+                                                <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- footer e -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content e -->
+        </div>
+        <!-- wrap e -->
+    </div>
+    <!-- main e -->
+    <!-- app-root e -->
+    <!-- JavaScript -->
+    <script src="./assets/js/bundle.js?ver=1.4.0"></script>
+    <script src="./assets/js/scripts.js?ver=1.4.0"></script>
+    <script src="./assets/js/charts/gd-general.js?ver=1.4.0"></script>
+
+    <script src="~/assets/js/customJs2.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

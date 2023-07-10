@@ -1,0 +1,176 @@
+﻿@model BookAMechanicc.Models.tbl_mechanic
+@{
+    ViewBag.Title = "ManageMechanic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.isAdded != null)
+{
+    if ((bool)ViewBag.isAdded)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> @ViewBag.feedback.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Ops!</strong> @ViewBag.feedback.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+}
+
+<div class="nk-block-head">
+    <div class="nk-block-head-content">
+        <div class="nk-block-head-sub"><span>Account Setting</span></div>
+        <h2 class="nk-block-title fw-normal">My Profile</h2>
+        <div class="nk-block-des">
+            <p>You have full control to manage your own account setting. <span class="text-primary"><em class="icon ni ni-info"></em></span></p>
+        </div>
+    </div>
+</div><!-- .nk-block-head -->
+<!-- nav-tabs -->
+<div class="nk-block">
+    <div class="nk-block-head">
+        <div class="nk-block-head-content">
+            <h5 class="nk-block-title">Personal Information</h5>
+            <div class="nk-block-des">
+                <p>Basic info, like your name and address.</p>
+            </div>
+        </div>
+    </div><!-- .nk-block-head -->
+    <div class="card card-bordered">
+        <div class="nk-data data-list">
+            <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                <div class="data-col">
+                    <span class="data-label">Full Name</span>
+                    <span class="data-value">@Model.firstname @Model.lastname</span>
+                </div>
+                <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+            </div><!-- .data-item -->
+            <div class="data-item">
+                <div class="data-col">
+                    <span class="data-label">Username</span>
+                    <span class="data-value">@Model.username</span>
+                </div>
+                <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
+            </div><!-- .data-item -->
+            <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                <div class="data-col">
+                    <span class="data-label">Phone Number</span>
+                    <span class="data-value text-soft">@Model.contact</span>
+                </div>
+                <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+            </div><!-- .data-item -->
+            <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                <div class="data-col">
+                    <span class="data-label">Address</span>
+                    <span class="data-value">@Model.address</span>
+                </div>
+                <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+            </div>
+            <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                <div class="data-col">
+                    <span class="data-label">Garage Name</span>
+                    <span class="data-value">@Model.garageName</span>
+                </div>
+                <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+            </div>
+            <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                <div class="data-col">
+                    <span class="data-label">Rating</span>
+                    <span class="data-value">@Model.avg_rating</span>
+                </div>
+                <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+            </div><!-- .data-item -->
+        </div><!-- .nk-data -->
+    </div><!-- .card -->
+    <!-- Another Section -->
+    <!-- .nk-block-head -->
+    <!-- .card -->
+</div><!-- .nk-block -->
+<!-- @@ Profile Edit Modal  -->
+<div class="modal fade" tabindex="-1" role="dialog" id="profile-edit">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+            <div class="modal-body modal-body-lg">
+                <h5 class="title">Update Profile</h5>
+                <ul class="nk-nav nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#personal">Personal</a>
+                    </li>
+                </ul><!-- .nav-tabs -->
+                <form action="Mechanic/EditMechanic" method="post">
+                    @Html.HiddenFor(x => x.id)
+                    @Html.HiddenFor(x => x.isBooked)
+                    @Html.HiddenFor(x => x.avg_rating)
+                    @Html.HiddenFor(x => x.username)
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="personal">
+                            <div class="row gy-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="firstname">First Name</label>
+                                        @*<input type="text" class="form-control form-control-lg" id="firstname"  name="firstname" placeholder="Enter First name">*@
+                                        @Html.TextBoxFor(x => x.firstname, new { @class = "form-control form-control-lg", @placeholder = "Enter First name" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="lastname">Last Name</label>
+                                        @*<input type="text" class="form-control form-control-lg" id="lastname" name="lastname" placeholder="Enter Last name">*@
+                                        @Html.TextBoxFor(x => x.lastname, new { @class = "form-control form-control-lg", @placeholder = "Enter Last name" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="garageName">Garage Name</label>
+                                        @*<input type="text" class="form-control form-control-lg" id="lastname" name="lastname" placeholder="Enter Last name">*@
+                                        @Html.TextBoxFor(x => x.garageName, new { @class = "form-control form-control-lg", @placeholder = "Enter Garage name" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="password">Password</label>
+                                        @*<input type="text" class="form-control form-control-lg" name="password" id="password" placeholder="Enter new Password">*@
+                                        @Html.TextBoxFor(x => x.password, new { @class = "form-control form-control-lg", @placeholder = "Enter new password" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="contact">Phone Number</label>
+                                        @*<input type="text" class="form-control form-control-lg" id="contact" name="contact" placeholder="+92-3xxxxxxx">*@
+                                        @Html.TextBoxFor(x => x.contact, new { @class = "form-control form-control-lg", @placeholder = "+92-321xxxxxxx" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="address">Address</label>
+                                        @*<input type="text" class="form-control form-control-lg" id="address" name="address" placeholder="Enter Address">*@
+                                        @Html.TextBoxFor(x => x.address, new { @class = "form-control form-control-lg", @placeholder = "Enter Address" })
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                        <li>
+                                            <button type="submit" class="btn btn-lg btn-primary">Update Profile</button>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-dismiss="modal" class="btn btn-lg btn-danger ">Cancel</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- .tab-pane --><!-- .tab-pane -->
+                    </div><!-- .tab-content -->
+                </form>
+            </div><!-- .modal-body -->
+        </div><!-- .modal-content -->
+    </div><!-- .modal-dialog -->
+</div><!-- .modal -->

@@ -1,0 +1,204 @@
+﻿@model BookAMechanicc.Models.tbl_mechanic
+
+@if (ViewBag.isAdded != null)
+{
+    if ((bool)ViewBag.isAdded)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> @ViewBag.feedback.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Ops!</strong> @ViewBag.feedback.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+}
+
+
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between g-3">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">Mechanic / <strong class="text-primary small">@Model.username</strong></h3>
+                            <div class="nk-block-des text-soft">
+                                <ul class="list-inline">
+                                    <li>User ID: <span class="text-base">@Model.id</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="nk-block-head-content">
+                            <a href="Customer/BookAMechanic" class="btn btn-outline-light bg-white d-none d-sm-inline-flex"><em class="icon ni ni-arrow-left"></em><span>Back</span></a>
+                            <a href="Customer/BookAMechanic" class="btn btn-icon btn-outline-light bg-white d-inline-flex d-sm-none"><em class="icon ni ni-arrow-left"></em></a>
+                        </div>
+                    </div>
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="card card-bordered">
+                        <div class="card-aside-wrap">
+                            <div class="card-content">
+                                <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#"><em class="icon ni ni-user-circle"></em><span>Personal</span></a>
+                                    </li>
+                                </ul><!-- .nav-tabs -->
+                                <div class="card-inner">
+                                    <div class="nk-block">
+                                        <div class="nk-block-head">
+                                            <h5 class="title">Personal Information</h5>
+                                        </div><!-- .nk-block-head -->
+                                        <div class="profile-ud-list">
+
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Full Name</span>
+                                                    <span class="profile-ud-value">@Model.firstname @Model.lastname</span>
+                                                </div>
+                                            </div>
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Contact</span>
+                                                    <span class="profile-ud-value">@Model.contact</span>
+                                                </div>
+                                            </div>
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Address</span>
+                                                    <span class="profile-ud-value">@Model.address</span>
+                                                </div>
+                                            </div>
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Garage Name</span>
+                                                    <span class="profile-ud-value">@Model.garageName</span>
+                                                </div>
+                                            </div>
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Ratings</span>
+                                                    <span class="profile-ud-value">@Model.avg_rating</span>
+                                                </div>
+                                            </div>
+                                        </div><!-- .profile-ud-list -->
+                                    </div><!-- .nk-block -->
+                                    <div class="nk-divider divider md"></div>
+                                    <div class="nk-block">
+                                        <div class="card card-bordered">
+                                            <div class="card-inner">
+                                                <div class="card-head">
+                                                    <h5 class="card-title">Booking Form</h5>
+                                                </div>
+                                                <form action="Customer/BookNow" method="post" class="gy-3">
+                                                    @Html.HiddenFor(x => x.id)
+
+                                                    <div class="row g-3 align-center">
+                                                        <div class="col-lg-5">
+                                                            <div class="form-group">
+                                                                <label class="form-label">Service</label>
+                                                                <span class="form-note">Select a service.</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-7">
+                                                            <div class="form-group">
+                                                                <div class="form-control-wrap">
+                                                                    <select class="form-select" id="serviceSelect" name="service" onchange="calculateCost()">
+                                                                        <option value="">Select a service</option>
+                                                                        <option value="Car wash">Car wash</option>
+                                                                        <option value="Oil changing">Oil changing</option>
+                                                                        <option value="Car repairing">Car repairing</option>
+                                                                        <option value="Car Service">Car Service</option>
+                                                                        <option value="Tyre Changing">Tyre Changing</option>
+                                                                        <option value="Body Showering">Body Showering</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row g-3 align-center">
+                                                        <div class="col-lg-5">
+                                                            <div class="form-group">
+                                                                <label class="form-label">Service Cost</label>
+                                                                <span class="form-note">The cost of the selected service is:</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-7">
+                                                            <div class="form-group">
+                                                                <div class="form-control-wrap">
+                                                                    <span id="cost" name="cost"></span>
+                                                                    <input type="hidden" id="serviceCost" name="serviceCost" value="" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row g-3">
+                                                        <div class="col-lg-7 offset-lg-5">
+                                                            <div class="form-group mt-2">
+                                                                <button type="submit" class="btn btn-lg btn-primary">Confirm Order</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div><!-- card -->
+                                    </div><!-- .nk-block -->
+                                </div><!-- .card-inner -->
+                            </div><!-- .card-content -->
+
+                        </div><!-- .card-aside-wrap -->
+                    </div><!-- .card -->
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to calculate the cost based on the selected service
+    function calculateCost() {
+        var serviceSelect = document.getElementById("serviceSelect");
+        var selectedService = serviceSelect.value;
+        var cost = 0;
+
+        // Assign the cost based on the selected service
+        switch (selectedService) {
+            case "Car wash":
+                cost = 1500;
+                break;
+            case "Oil changing":
+                cost = 2200;
+                break;
+            case "Car repairing":
+                cost = 7000;
+                break;
+            case "Car service":
+                cost = 3500;
+                break;
+            case "Tyre Changing":
+                cost = 500;
+                break;
+            case "Body Showering":
+                cost = 9000;
+                break;
+            default:
+                cost = 0;
+                break;
+        }
+
+        // Display the calculated cost
+        var costElement = document.getElementById("cost");
+        costElement.textContent = cost;
+        // Update the value of the hidden field (if needed)
+        var hiddenField = document.getElementById("serviceCost");
+        hiddenField.value = cost;
+    }
+</script>

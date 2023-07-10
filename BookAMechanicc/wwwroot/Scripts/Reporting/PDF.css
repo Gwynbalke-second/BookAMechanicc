@@ -1,0 +1,98 @@
+﻿@font-face {
+    font-family: Times New Roman;
+    src: url('../../fonts/glyphicons-halflings-regular.eot');
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    text-rendering: optimizeLegibility;
+    font-family: 'Times New Roman';
+    letter-spacing: 1px;
+    color:black;
+}
+
+.m-time {
+    font-size: 10pt;
+}
+
+.p-name {
+    font-size: 10pt;
+}
+
+.date {
+    font-size: 12pt;
+}
+
+h3 {
+    font-size: 20pt;
+    padding: 1px;
+    margin: 0px;
+}
+
+h5 {
+    font-size: 12pt;
+    padding: 5px;
+    margin: 0px;
+}
+
+.page {
+    position: relative;
+    page-break-after: always;
+    margin: 0;
+    padding: 0;
+    width: 8.5in;
+    height: 11in;
+    overflow: hidden;
+}
+
+table {
+    page-break-after: auto;
+}
+
+tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+}
+/*https://dev.to/lampewebdev/css-line-height-jjp*/
+td {
+    page-break-inside: avoid;
+    page-break-after: auto;
+    line-height: 2;
+}
+
+input {
+    width: 100%;
+    margin: 2px;
+    border: 0px solid #CCC;
+    font-family: 'Times New Roman';
+}
+
+textare {
+    width: 100%;
+    border: 0px solid #CCC;
+    font-family: 'Times New Roman';
+}
+
+thead, thead.tr {
+    display: table-header-group;
+}
+
+tfoot {
+    display: table-footer-group;
+}
+
+#startDate, #endDate {
+    padding: 1px;
+    margin: 0px;
+    font-size: 10pt;
+}
+
+.FromTo {
+    display: inline-block;
+    width: 50px;
+}
+
+#date-div {
+    padding: 5px;
+}

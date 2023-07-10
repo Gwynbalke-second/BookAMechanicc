@@ -1,0 +1,187 @@
+﻿@model BookAMechanicc.Models.tbl_mechanic
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <base href="../../../../">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    @*<meta name="description" content="@@page-discription">*@
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="./images/favicon.png">
+    <!-- Page Title  -->
+    <title>Registration Mechanic| BookAMechanic</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="./assets/css/dashlite.css?ver=1.4.0">
+    <link id="skin-default" rel="stylesheet" href="./assets/css/theme.css?ver=1.4.0">
+</head>
+
+<body class="nk-body npc-crypto ui-clean pg-auth">
+    <!-- app body s -->
+    <div class="nk-app-root">
+        @if (ViewBag.feedback != null)
+        {
+            if ((Boolean)ViewBag.signedUp)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong> @ViewBag.feedback
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="opacity:1;">
+                        <span aria-hidden="true" style="opacity:1;">&times;</span>
+                    </button>
+                </div>
+            }
+
+
+        }
+        <div class="nk-split nk-split-page nk-split-md">
+            <div class="nk-split-content nk-block-area nk-block-area-column nk-auth-container w-lg-45">
+                <div class="absolute-top-right d-lg-none p-3 p-sm-5">
+                    <a href="#" class="toggle btn btn-white btn-icon btn-light" data-target="athPromo"><em class="icon ni ni-info"></em></a>
+                </div>
+                <div class="nk-block nk-block-middle nk-auth-body">
+                    <div class="brand-logo pb-5">
+
+                    </div>
+                    <div class="nk-block-head">
+                        <div class="nk-block-head-content">
+                            <h5 class="nk-block-title">Register</h5>
+                            <div class="nk-block-des">
+                                <p>Create New Mechanic Account</p>
+                            </div>
+                        </div>
+                    </div><!-- .nk-block-head -->
+                    <form action="Login/SignUpMechanic" method="post" id="registrationForm">
+                        <div class="form-group">
+                            <label class="form-label" for="firstname">First Name</label>
+                            @Html.ValidationMessageFor(x => x.firstname, "", new { @class = "error", })
+                            @Html.TextBoxFor(x => x.firstname, new { @class = "form-control form-control-lg", @placeholder = "John", @required = "required" })
+
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="lastname">Last Name</label>
+                            @Html.ValidationMessageFor(x => x.lastname, "", new { @class = "error", })
+                            @Html.TextBoxFor(x => x.lastname, new { @class = "form-control form-control-lg", @placeholder = "Doe", @required = "required" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.ValidationMessageFor(x => x.username, "", new { @class = "error", })
+                            <label class="form-label" for="username">Email or Username</label>
+                            @Html.TextBoxFor(x => x.username, new { @class = "form-control form-control-lg", @placeholder = "johndoe@nobody", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="password">Passcode</label>
+                            <div class="form-control-wrap">
+                                <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch" data-target="password">
+                                    <em class="passcode-icon icon-show icon ni ni-eye"></em>
+                                    <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
+                                </a>
+                                @*@Html.TextBoxFor(x => x.Password, new { @class = "form-control form-control-lg", @name = "password", id = "password", @placeholder = "Enter your passcode", @required = "required", @minlength = 8 })*@
+                                <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Enter your passcode" minlength=8 required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="garageName">Garage Name</label>
+                            @Html.ValidationMessageFor(x => x.garageName, "", new { @class = "error", })
+                            @Html.TextBoxFor(x => x.garageName, new { @class = "form-control form-control-lg", @placeholder = "Doe", @required = "required" })
+
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="address">Address</label>
+                            @Html.ValidationMessageFor(x => x.address, "", new { @class = "error", })
+                            @Html.TextBoxFor(x => x.address, new { @class = "form-control form-control-lg", @placeholder = "Lhr,Pk", @required = "required" })
+
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="contact">Contact</label>
+                            @Html.ValidationMessageFor(x => x.contact, "", new { @class = "error", })
+                            @Html.TextBoxFor(x => x.contact, new { @class = "form-control form-control-lg", @placeholder = "03xx-xxxxxx9", @required = "required" })
+
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-control-xs custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkbox" required="required">
+                                <label class="custom-control-label" for="checkbox">I agree to BookAMechanic <a tabindex="-1" href="#">Privacy Policy</a> &amp; <a tabindex="-1" href="#"> Terms.</a></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-lg btn-primary btn-block">Register</button>
+                        </div>
+                    </form><!-- form -->
+                    <div class="form-note-s2 pt-4">
+                        Already have an account ? <a href="Login/Login"><strong>Sign in instead</strong></a>
+                    </div>
+                </div><!-- .nk-block -->
+                <div class="nk-block nk-auth-footer">
+                    <div class="nk-block-between">
+                        <ul class="nav nav-sm">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Terms & Condition</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Privacy Policy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Help</a>
+                            </li>
+
+                        </ul><!-- nav -->
+                    </div>
+                    <div class="mt-3">
+                        <p>&copy; @DateTime.Now.Year BookAMechanic. All Rights Reserved.</p>
+                    </div>
+                </div><!-- nk-block -->
+            </div><!-- nk-split-content -->
+            <div class="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right" data-content="athPromo" data-toggle-screen="lg" data-toggle-overlay="true">
+                <div class="slider-wrap w-100 w-max-550px p-3 p-sm-5 m-auto">
+                    <div class="slider-init" data-slick='{"dots":true, "arrows":false}'>
+                        <div class="slider-item">
+                            <div class="nk-feature nk-feature-center">
+                                <div class="nk-feature-img">
+                                    <img class="round" src="./images/slides/promo-a.png" srcset="./images/slides/promo-a2x.png 2x" alt="">
+                                </div>
+                                <div class="nk-feature-content py-4 p-sm-5">
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div><!-- .slider-item -->
+                        <div class="slider-item">
+                            <div class="nk-feature nk-feature-center">
+                                <div class="nk-feature-img">
+                                    <img class="round" src="./images/slides/promo-b.png" srcset="./images/slides/promo-b2x.png 2x" alt="">
+                                </div>
+                                <div class="nk-feature-content py-4 p-sm-5">
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div><!-- .slider-item -->
+                        <div class="slider-item">
+                            <div class="nk-feature nk-feature-center">
+                                <div class="nk-feature-img">
+                                    <img class="round" src="./images/slides/promo-c.png" srcset="./images/slides/promo-c2x.png 2x" alt="">
+                                </div>
+                                <div class="nk-feature-content py-4 p-sm-5">
+                                   
+                                    
+                                </div>
+                            </div>
+                        </div><!-- .slider-item -->
+                    </div><!-- .slider-init -->
+                    <div class="slider-dots"></div>
+                    <div class="slider-arrows"></div>
+                </div><!-- .slider-wrap -->
+            </div><!-- nk-split-content -->
+        </div><!-- nk-split -->
+    </div><!-- app body e -->
+    <!-- JavaScript -->
+    <script src="./assets/js/bundle.js?ver=1.4.0"></script>
+    <script src="./assets/js/scripts.js?ver=1.4.0"></script>
+</body>
+
+</html>

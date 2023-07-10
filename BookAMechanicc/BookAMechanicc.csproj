@@ -1,0 +1,93 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\images - Copy\**" />
+    <Content Remove="wwwroot\images - Copy\**" />
+    <EmbeddedResource Remove="wwwroot\images - Copy\**" />
+    <None Remove="wwwroot\images - Copy\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\coins\bch.svg" />
+    <None Include="wwwroot\images\coins\bnb.svg" />
+    <None Include="wwwroot\images\coins\btc.svg" />
+    <None Include="wwwroot\images\coins\eos.svg" />
+    <None Include="wwwroot\images\coins\eth.svg" />
+    <None Include="wwwroot\images\coins\ltc.svg" />
+    <None Include="wwwroot\images\coins\trx.svg" />
+    <None Include="wwwroot\images\coins\usdt.svg" />
+    <None Include="wwwroot\images\coins\xlm.svg" />
+    <None Include="wwwroot\images\coins\xps.svg" />
+    <None Include="wwwroot\images\icons\account-secure.svg" />
+    <None Include="wwwroot\images\icons\bills.svg" />
+    <None Include="wwwroot\images\icons\card-credit.svg" />
+    <None Include="wwwroot\images\icons\card-debit.svg" />
+    <None Include="wwwroot\images\icons\card-secure.svg" />
+    <None Include="wwwroot\images\icons\code-scan.svg" />
+    <None Include="wwwroot\images\icons\codes.svg" />
+    <None Include="wwwroot\images\icons\connect-secure.svg" />
+    <None Include="wwwroot\images\icons\customize.svg" />
+    <None Include="wwwroot\images\icons\devices.svg" />
+    <None Include="wwwroot\images\icons\doc-checked.svg" />
+    <None Include="wwwroot\images\icons\emails.svg" />
+    <None Include="wwwroot\images\icons\file-doc.svg" />
+    <None Include="wwwroot\images\icons\file-excel.svg" />
+    <None Include="wwwroot\images\icons\file-media.svg" />
+    <None Include="wwwroot\images\icons\file-pdf.svg" />
+    <None Include="wwwroot\images\icons\file-word.svg" />
+    <None Include="wwwroot\images\icons\file-zip.svg" />
+    <None Include="wwwroot\images\icons\help-desk.svg" />
+    <None Include="wwwroot\images\icons\id-back.svg" />
+    <None Include="wwwroot\images\icons\id-front.svg" />
+    <None Include="wwwroot\images\icons\invoice.svg" />
+    <None Include="wwwroot\images\icons\kyc-dv.svg" />
+    <None Include="wwwroot\images\icons\kyc-nid.svg" />
+    <None Include="wwwroot\images\icons\kyc-pp.svg" />
+    <None Include="wwwroot\images\icons\loop.svg" />
+    <None Include="wwwroot\images\icons\password-secure.svg" />
+    <None Include="wwwroot\images\icons\plan-s1.svg" />
+    <None Include="wwwroot\images\icons\plan-s2.svg" />
+    <None Include="wwwroot\images\icons\plan-s3.svg" />
+    <None Include="wwwroot\images\icons\product-cc.svg" />
+    <None Include="wwwroot\images\icons\product-ee.svg" />
+    <None Include="wwwroot\images\icons\product-ig.svg" />
+    <None Include="wwwroot\images\icons\product-pp.svg" />
+    <None Include="wwwroot\images\icons\product-sc.svg" />
+    <None Include="wwwroot\images\icons\profile.svg" />
+    <None Include="wwwroot\images\icons\recheck.svg" />
+    <None Include="wwwroot\images\icons\reports.svg" />
+    <None Include="wwwroot\images\icons\settings.svg" />
+    <None Include="wwwroot\images\icons\support-account.svg" />
+    <None Include="wwwroot\images\icons\support-general.svg" />
+    <None Include="wwwroot\images\icons\support-payment.svg" />
+    <None Include="wwwroot\images\icons\support-secure.svg" />
+    <None Include="wwwroot\images\icons\support.svg" />
+    <None Include="wwwroot\images\icons\sync.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\gfx\" />
+  </ItemGroup>
+
+</Project>

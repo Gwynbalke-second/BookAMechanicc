@@ -1,0 +1,94 @@
+﻿@model IEnumerable<BookAMechanicc.Models.tbl_order>
+@{
+    ViewBag.Title = "OrderHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="nk-content-wrap">
+    <div class="nk-block-head nk-block-head-lg">
+        <div class="nk-block-between-md g-4">
+            <div class="nk-block-head-content">
+                <h2 class="nk-block-title fw-normal">All Orders</h2>
+                <div class="nk-block-des">
+                    <p>Here is your current order of account that needs reviewing.</p>
+                </div>
+            </div>
+        </div>
+    </div><!-- .nk-block-head -->
+    <div class="nk-block">
+        <div class="card card-bordered">
+            <table class="table table-tranx table-billing">
+                <thead>
+                    <tr class="tb-tnx-head">
+                        <th class="tb-tnx-id"><span class="">#</span></th>
+                        <th class="tb-tnx-info">
+                            <span class="tb-tnx-desc d-none d-sm-inline-block">
+                                <span>Customer Id</span>
+                            </span>
+                            <span class="tb-tnx-date d-md-inline-block d-none">
+                                <span class="d-md-none">Date</span>
+                                <span class="d-none d-md-block">
+                                    <span>Issue Date</span>
+                                    <span>Issue Time</span>
+                                </span>
+                            </span>
+                        </th>
+                        <th class="tb-tnx-id"><span class="">Service</span></th>
+                        <th class="tb-tnx-amount">
+                            <span class="tb-tnx-total">Total</span>
+                            <span class="tb-tnx-status d-none d-md-inline-block">Status</span>
+                        </th>
+                    </tr><!-- .tb-tnx-head -->
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var date = item.order_date.ToLongDateString();
+                        var time = item.order_date.ToShortTimeString();
+
+                        <tr class="tb-tnx-item">
+                            <td class="tb-tnx-id">
+                                <span>@Html.DisplayFor(modelItem => item.id)</span>
+                            </td>
+                            <td class="tb-tnx-info">
+                                <div class="tb-tnx-desc">
+                                    <span class="title">@Html.DisplayFor(modelItem => item.customer_id) </span>
+                                </div>
+                                <div class="tb-tnx-date">
+                                    <span class="date">@Html.DisplayFor(modelItem => date)</span>
+                                    <span class="date">@Html.DisplayFor(modelItem => time)</span>
+                                </div>
+                            </td>
+                            <td class="tb-tnx-id">
+                                <span>@Html.DisplayFor(modelItem => item.service)</span>
+                            </td>
+                            <td class="tb-tnx-amount">
+                                <div class="tb-tnx-total">
+                                    <span class="amount">@Html.DisplayFor(modelItem => item.order_price)</span>
+                                </div>
+                                <div class="tb-tnx-status">
+                                    <span class="badge badge-dot badge-success">@Html.DisplayFor(modelItem => item.status)</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="nk-tb-col nk-tb-col-tools">
+                                    <ul class="nk-tb-actions gx-2">
+                                        <li class="nk-tb-action">
+                                            <a href="@Url.Action("ViewDetails", "Mechanic", new { id = item.id })" class="btn btn-sm btn-icon btn-trigger" data-toggle="tooltip" data-placement="top" title="View Details">
+                                                <em class="icon ni ni-eye-alt-fill "></em>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- .tb-tnx-item -->
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div><!-- .nk-block -->
+</div>
+
